@@ -1,0 +1,71 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block title %} Home  Page {% endblock %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            </div>
+          
+            <div class="box101">
+              
+                <img src="{% static 'Selymoon-removebg-preview.png' %}"  height="300px"> 
+
+                <h1>Thanks for the Order</h1>
+                <h6>Great news! Your order is all set to hit the road. We're packing it up with <br> care, and it'll be on its way to your home.</h6>
+                <button id="popupBtn">Show Confirmation</button>
+
+
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" id="closePopup">&times;</span>
+        
+        <h2>Order Confirmation</h2>
+        <p>Your order has been successfully placed!</p>
+        <a href="/myorders">
+            <button class="ord">View your orders</button>
+
+
+        </a>
+        
+    </div>
+   
+
+   
+</div>
+
+
+   
+
+<script>
+    document.getElementById('popupBtn').onclick = function() {
+    document.getElementById('popup').style.display = 'block';
+}
+
+document.getElementById('closePopup').onclick = function() {
+    document.getElementById('popup').style.display = 'none';
+}
+
+// Close the popup if the user clicks outside of it
+window.onclick = function(event) {
+    const popup = document.getElementById('popup');
+    if (event.target == popup) {
+        popup.style.display = 'none';
+    }
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,352 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block title %} Table  Page {% endblock %}
+
+{% block content %}
+
+
+
+   
+
+    <section id="menu">
+        <h2 id="todaymenu">Our Today,s Menu</h2>
+        <div class="todaymenu1"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="box121">
+                        <img src="{% static  'latte.jpg' %}" alt="" height="200x" width="200px">
+                        <h5>Latte</h5>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="box121">
+                        <img src="{% static  'choko.jpg' %}" alt="" height="200x" width="200px">
+                        <h5>Chocolate Cake</h5>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="box121">
+                        <img src="{% static  'samosa.jpg' %}" alt="" height="200x" width="200px">
+                        <h5>Samosa</h5>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="box121">
+                        <img src="{% static  'pasta.jpg' %}" alt="" height="200x" width="200px">
+                        <h5>Pasta</h5>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="box121">
+                    <img src="{% static  'mocha.jpg' %}" alt="" height="200x" width="200px">
+                    <h5>Mocha</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <ul>
+            <li>Espresso</li>
+            <li>Latte</li>
+            <li>Cappuccino</li>
+            <li>Americano</li>
+            <li>Mocha</li>
+        </ul> -->
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="box122">
+                    <button id="openModal" class="openModals">Book a Table</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Book a Table</h2>
+            <form id="bookingForm">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required><br>
+
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time" required><br>
+
+                <label for="seats">Number of Seats:</label>
+                <input type="number" id="seats" name="seats" min="1" max="15" required><br>
+                
+                <label for="place">Place:</label>
+                <select id="place" name="place" required>
+                    <option value="inside">Inside</option>
+                    <option value="patio">Patio</option>
+                </select><br>
+
+                <label for="food">Food Preferences:</label>
+                <textarea id="food" name="food" rows="4" placeholder="Enter any food preferences..."></textarea><br>
+
+                <button type="submit" class="bookbtn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("bookingModal");
+        const btn = document.getElementById("openModal");
+        const closeSpan = document.getElementById("closeModal");
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        closeSpan.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Optional: Handle form submission
+        document.getElementById("bookingForm").onsubmit = function(event) {
+            event.preventDefault();
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+            const seats = parseInt(document.getElementById("seats").value);
+            const place = document.getElementById("place").value;
+            const food = document.getElementById("food").value;
+
+            alert(`Table booked!\nDate: ${date}\nTime: ${time}\nSeats: ${seats}\nPlace: ${place}\nFood Preferences: ${food}`);
+            modal.style.display = "none"; // Close modal after submission
+        
+
+        if (seats > 15) {
+            alert("Error: Maximum number of seats is 15.");
+            return; // Stop form submission
+        }
+
+        alert(`Table booked!\nDate: ${date}\nTime: ${time}\nSeats: ${seats}\nPlace: ${place}\nFood Preferences: ${food}`);
+        modal.style.display = "none"; // Close modal after submission
+    };
+    </script>
+
+
+
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 500px; /* Max width for modal */
+            margin-top: 100px;
+        }
+
+
+       
+        /* Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+      
+        .box121{
+            margin-bottom: 200px;
+            margin-top: 100px;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea {
+            margin-bottom: 15px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .openModals {
+            background: #7E5E3c; 
+            color: white;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid white;
+            margin-top: 50px;
+            margin-bottom: 100px;
+        }
+
+        .openModals:hover {
+            /* background-color: #45a049;  */
+            background: #ac6418;
+        }
+        .box122{
+            margin: auto;
+            text-align: center;
+
+        }
+      #todaymenu{
+        margin-left: 30px;
+        font-size: 35px;
+        padding: 20px 20px 0px 20px;
+      } 
+      .todaymenu1{
+        background-color: orange;
+        height: 2px;
+        width: 230px;
+        margin-left: 70px;
+        margin-top: -10px;
+
+      }
+
+    @media(max-with:768px) {
+        .modal-content {
+            margin-top: 200px;
+        }
+       
+    }
+
+    @media(max-width:568px) {
+        .box121{
+            margin-bottom: 20px;
+            margin-top: 100px;
+            text-align: center;
+        }
+        #todaymenu {
+            text-align: center;
+        }
+        .todaymenu1{
+            text-align: center;
+            width: 300px;
+            margin-left: none;
+        }
+        
+    }
+    .bookbtn{
+        background-color: rgb(24, 22, 22);
+        border: 2px solid white;
+        color: white;
+        padding-top:7px ;
+        padding-bottom: 12px;
+    }
+    </style>
+
+
+
+
+
+    <section class="sec7">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-sm-12">
+                    <div class="box18">
+                        <a href="/">
+                        <img src="{% static 'coffee_logo.png' %}" alt="">
+                        <h2>Cafe Spot</h2>
+                    </a>
+                    </div>
+                </div>
+    
+    
+                <div class="col-xl-3 col-sm-12">
+                    <div class="box19">
+                <h2>Useful Links</h2>
+                  <a href="/#about">About</a>
+                  <br>
+                  <a href="/#service">Service</a>
+                  <br>
+                  <a href="/#gallery">Gallery</a>
+                  <br>
+                  <a href="/#contact">Contact</a>
+                    </div>
+                </div>
+    
+                <div class=" col-xl-3 col-sm-12">
+                    <div class="box20">
+                        <h2>Contact</h2>
+                        <br>
+                        <i class="bx bx-current-location bz"></i>
+                        <h3>Kerala,Palakkad</h3>
+                        <i class="bx bxs-phone-call bz"></i>
+                        <h3>+91 12345678</h3>
+                        <i class="bx bxs-time-five bz"></i>
+                        <h3>Mon-Sun : 10:00 AM - 7:00 PM</h3>
+                        
+    
+                        
+                    </div>
+                   
+                      
+    
+                     
+                </div>
+    
+                <div class="col-xl-3 col-sm-12">
+                    <div class="box21">
+                   <h2>Follow</h2>
+                   <br>
+                   <a href="https://www.facebook.com/">
+                   <i class="bi bi-facebook bv"></i>
+                </a>
+                   <a href="https://x.com/login?mx=2">
+                    <i class="bx bxl-twitter bv"></i>
+                   </a>
+                   <a href="https://www.instagram.com/accounts/login/?hl=en"> <i class="bx bxl-instagram-alt bv"></i>
+                </a>
+                  
+                    </div>
+                </div>
+            </div>
+        </div>
+     </section>
+    
+
+
+
+
+  
+
+
+{% endblock %}

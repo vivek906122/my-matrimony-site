@@ -1,0 +1,48 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block title %} Myorder  Page {% endblock %}
+
+{% block content %}
+
+<div class="box103">
+    <h1>My Orders</h1>
+</div>
+
+<!-- <div class="contaniner">
+    <div class="row">
+        <div class="col">
+            <div class="box103">
+                <h1>My Orders</h1>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="box104">
+
+<div class="order-cards">
+    
+    {% for x in order  %}
+    <div class="order-card">
+        <img src="/media/{{x.order_image}}" alt="" height="200px" >
+        <p>{{x.order_name}}</p>
+        <p>Price:{{x.order_price}}</p>
+        <p>Quantity:{{x.order_qty}}</p>
+        <p>Total:{{x.order_amount}}</p>
+        <div class="actions">
+            <a href="?del={{ x.id }}">
+                <button class="btn btn-danger">Cancel</button>
+            </a>
+            <a href="/cart">
+                <button>Reorder</button>
+
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    
+</div>
+</div>
+
+{% endblock %}

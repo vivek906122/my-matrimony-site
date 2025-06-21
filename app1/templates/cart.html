@@ -1,0 +1,104 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block title %} Cart  Page {% endblock %}
+
+{% block content %}
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="cart_head">
+                <h1>Cart</h1>
+
+            </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="container">
+    <div class="row">
+        <div class=" col-xl-8 col-lg-6 col-md-12 col-sm-12 ">
+    {% for x in cart %}
+
+   <div class="row">
+    <div class="col">
+        <div class="cart-item">
+            <img src="/media/{{x.cart_image}}" alt="" height="200px">
+                    
+                <h5>{{x.cart_name}}</h5>
+           
+                <span class="btn-sn">
+                    <a href="/cart?q=dec&cp={{x.id}}" class="btn-op ">-</a>
+                   <h6> {{x.cart_qty}}</h6>
+                    <a href="/cart?q=inc&cp={{x.id}}" class="btn-oq ">+</a>
+    
+                </span>
+
+                
+                
+
+                <!-- <input class="putin" type="number" value="1" min="1"> -->
+                <span class="price">$   {{x.cart_price}}</span>
+    
+                <span class="cart_rem">
+                    <a href="/cart?del={{x.id}}">
+                        <button ><i class="bi bi-x"></i></button></a>
+                </span>
+                
+                    
+                   
+            </div>
+            <hr>
+    </div>
+   </div>
+ {% endfor %}
+
+    </div>
+ <div class="  col-xl-4 col-lg-6 col-md-12 col-sm-12">
+  
+    <div class="cart-totals">
+
+    <h3>Payment Details</h3>
+    <!-- <img src="{% static 'payyy-removebg-preview.png' %}" alt="" height="180px " width="300px"> -->
+
+        <p>Subtotal : {{tot}}</p> 
+         <p>Shipping : {{shp}}</p>
+         <p>Tax : {{gst}}</p>
+         <hr>
+         <p class="total">Total: <span id="gtott">{{gtot}}</span></p>
+         
+     </div>
+
+</div>
+
+</div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="cart-buttons">
+                <a href="/">
+                    <button class="continue-shopping">Continue Shopping</button>
+            
+                </a>
+            
+                 <a href="/checkout">
+                    <button class="checkout">Checkout</button>
+                </a> 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

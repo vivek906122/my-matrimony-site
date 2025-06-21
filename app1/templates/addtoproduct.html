@@ -1,0 +1,50 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block title %} Addproduct  Page {% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 offset-sm-4">
+            <div class="bg-secondary text-white p-3 mt-5">
+                <h1> Add Product</h1>
+                <form action="/addtoproduct" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3 mt-3">
+                    <label for="name" class="form-label">PRODUCT NAME:</label>
+                    <input type="text" class="form-control" id="name" placeholder="product name" name="pro_name">
+                    </div>
+
+
+                    <div class="mb-3 mt-3">
+                    <label for="price" class="form-label">PRODUCT PRICE:</label>
+                    <input type="number" class="form-control" id="price" placeholder="product price" name="pro_price">
+                    </div>
+
+                    <div class="mb-3 mt-3">
+                    <label for="email" class="form-label">PRODUCT IMAGE:</label>
+                    <input type="file" class="form-control" id="pro_image" placeholder="product image" name="pro_image">
+                    
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="name" class="form-label">PRODUCT DESCRIPTION:</label>
+                        <input type="text" class="form-control" id="pro_desc" placeholder="product description" name="pro_desc">
+                        
+                        </div>
+    
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

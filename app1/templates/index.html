@@ -1,0 +1,371 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block content %}
+
+
+    <section class="sec1" id="index">
+        <div class="container-fluid">
+
+
+   <div class="row">
+       <div class="col-12">
+           <div class="flex-row2">
+                   <div class="flex-col2">
+                   <div class="box1">
+                           <h1 id="ba">Fuel Your Passion</h1>
+                           <p id="bc">Discover the Magic in Every Cup</p>
+                           <p id="bb">Welcome to our coffee paradise, where every bean tells <br> a story and every cup sparks.</p>
+                           <div class="button-group">
+                            <a href="#serviecss">
+                               <button class="bd">Order Online</button></a>
+                               <a href="/booktable">
+                               <button id="be">Book A Table</button>
+   
+                               </a>
+                           </div>
+                   </div>
+ 
+                </div>
+
+                    <div class="flex-col">
+                        <div class="box2">
+                            <img src="{% static 'cap-removebg-preview.png' %}" alt="" id="ca">
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+        </div>
+    </div>
+
+    </section>
+
+
+<!-- --about -->
+
+<section class="sec2" id="about" >
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                <div class="box3">
+                        <h3 class="db" >About Us</h3>
+                        <div class="dc"></div>
+
+
+                    <p>
+                        We at Coffee House, located in Palakkad, Kerala, are one of the
+                        favorite hangouts for coffee and conversations. Our goal is to
+                        offer the best experience to our guests, ensuring an authentic
+                        coffee drinking experience in a warm, friendly, and relaxed
+                        environment. We aim to bring a sense of relaxation to the city
+                        with our cozy space, complete with comfortable couches to lounge
+                        in while you enjoy your coffee.
+                      </p>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                <div class="box4">
+                    <img src="{% static 'about_coffee.png' %}" alt="" class="da">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+
+<!-- --service -->
+
+
+
+
+
+<section class="sec3" id="service" >
+    <div class="container-fluid">
+        <div class="row">
+
+        <div class="col">
+           
+                <div class="box6">
+                    <h2 class="service_head" id="serviecss" >OUR SERVICES</h2>
+                    <div class="ea"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for x in products %}
+             <div class="col-lg-4 col-md-6 col-sm-12"> 
+                <div class="box5">
+                    <img src="/media/{{x.pro_image}}" alt="" height="300px" width="300px">
+                    <h3>{{ x.pro_name }}</h3>
+                    <p>
+                        {{ x.pro_desc }}
+                      </p>
+                      <button class="cart_button">Rs:{{ x.pro_price }}</button>
+                    <a href="/addtocart/{{x.id}}"><button class="cart_button">Add to cart</button></a>  
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+
+<!-- --gallery -->
+
+<section class="sec4" id="gallery">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="box10">
+                    <h2> GALLERY</h2>
+                    <div class="fb"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-xl-4 col-lg-6 col-md-12 col-sm-12">
+                <div class="box12">
+                    <img src="{% static 'gallery_1.jpg' %}" alt="" width="100%">
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+                <div class="box11">
+                    <img src="{% static 'gallery_2.jpg' %}" alt="" width="100%">
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+                <div class="box11">
+                    <img src="{% static 'beef.jpg' %}" alt="" width="100%">
+            </div>
+        </div>
+        </div>
+         <div class="row">
+           <div class="col-xl-4  col-lg-12 col-md-12 col-sm-12">
+                <div class="box12">
+                    <img src="{% static 'gallery_4.jpg' %}" alt="" width="100%">
+                </div>
+            </div>
+            <div class="col-xl-4  col-lg-12 col-md-12 col-sm-12">
+                <div class="box12">
+                    <img src="{% static 'gallery_5.jpg' %}" alt="" width="100%">
+                </div>
+            </div>
+            <div class= " col-xl-4 col-lg-12 col-md-12 col-sm-12">
+                <div class="box12">
+                    <img src="{% static 'gallery_6.jpg' %}" alt="" width="100%">
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-xl-4  col-lg-6 col-md-12 col-sm-12">
+             <div class="box13">
+                 <img src="{% static 'chicken4.jpg' %}" alt="" width="100%" >
+             </div>
+         </div>
+         <div class=" col-xl-4 col-lg-6 col-md-12 col-sm-12">
+             <div class="box12">
+                 <img src="{% static  'gallery_8.jpg' %}" alt="" width="100%">
+             </div>
+         </div>
+         <div class="  col-xl-4 col-lg-6 col-md-12 col-sm-12">
+             <div class="box12">
+                 <img src="{% static 'chicken.jpg' %}" alt="" width="100%">
+         </div>
+     </div>
+
+ </div>
+
+</div>
+    
+</section>
+
+<!-- --contact -->
+
+<section class="sec6" id="contact">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="box14">
+                    <h2>CONTACT US</h2>
+                    <div class="fv"></div>
+    
+                </div>
+               
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="flex-row">
+                    <div class="flex-col1">
+                        <div class="inbox">
+                            <form action="/ " id="contact" method="post">
+                                {% csrf_token %}
+                              <div class="field">
+                                <label for="Name">Full Name</label>
+                                <br>
+                                <input type="text" id="Name" placeholder="Your Name" name="con_name" required />
+                              </div>
+                              <div class="field">
+                                <label for="email">Your Email</label>
+                                <br>
+                                <input
+                                  type="text"
+                                  id="Name"
+                                  placeholder="Your Email"
+                                  required name="con_email"
+                                />
+                              </div>
+                              <div class="field">
+                        <label for="number">Your Number</label>
+                        <br>
+                        <input
+                          type="number"
+                          id="Name"
+                          placeholder="Your Contact Number"
+                          required name="con_num"
+                        />
+                      </div>
+                      <div class="field">
+                        <label for="textarea">Textarea</label>
+                        <br>
+                        <textarea name="con_area" id="textarea" placeholder="Your Message"></textarea>
+                       
+                        
+                      </div>
+        
+                      <button class="button" id="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="flex-col">
+                <div class="inbox1">
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="bx bx-current-location"></i>
+                        </div>
+                                <div class="col-11">
+                                    <h2>Our Location</h2>
+                                    <p>Berndorf, Germany</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                <i class="bx bxs-envelope "></i>
+            </div>
+            <div class="col-11">
+                <h2>General Enquries</h2>
+                <p>coffeeshop@xyz.com</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                <i class="bx bxs-phone-call"></i>
+              </div> 
+            <div class="col-11">
+                <h2>Call Us</h2>
+                <p>+91 12345678</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                <i class="bx bxs-time-five"></i>
+         
+            </div>
+            <div class="col-11">
+                <h2>Our Timing</h2>
+                <p>Mon-Sun : 10:00 AM - 7:00 PM</p>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+          
+            
+
+        </div>
+    </div>
+</section>
+
+<!-- --footer -->
+ <section class="sec7">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-3 col-sm-12">
+                <div class="box18">
+                    <a href="/">
+                    <img src="{% static 'coffee_logo.png' %}" alt="">
+                    <h2>Cafe Spot</h2>
+                </a>
+                </div>
+            </div>
+
+
+            <div class="col-xl-3 col-sm-12">
+                <div class="box19">
+            <h2>Useful Links</h2>
+              <a href="#about">About</a>
+              <br>
+              <a href="#service">Service</a>
+              <br>
+              <a href="#gallery">Gallery</a>
+              <br>
+              <a href="#contact">Contact</a>
+                </div>
+            </div>
+
+            <div class=" col-xl-3 col-sm-12">
+                <div class="box20">
+                    <h2>Contact</h2>
+                    <br>
+                    <i class="bx bx-current-location bz"></i>
+                    <h3>Kerala,Palakkad</h3>
+                    <i class="bx bxs-phone-call bz"></i>
+                    <h3>+91 12345678</h3>
+                    <i class="bx bxs-time-five bz"></i>
+                    <h3>Mon-Sun : 10:00 AM - 7:00 PM</h3>
+                    
+
+                    
+                </div>
+               
+                  
+
+                 
+            </div>
+
+            <div class="col-xl-3 col-sm-12">
+                <div class="box21">
+               <h2>Follow</h2>
+               <br>
+               <a href="https://www.facebook.com/">
+               <i class="bi bi-facebook bv"></i>
+            </a>
+               <a href="https://x.com/login?mx=2">
+                <i class="bx bxl-twitter bv"></i>
+               </a>
+               <a href="https://www.instagram.com/accounts/login/?hl=en"> <i class="bx bxl-instagram-alt bv"></i>
+            </a>
+              
+                </div>
+            </div>
+        </div>
+    </div>
+ </section>
+
+
+
+
+
+    
+
+{% endblock %}
