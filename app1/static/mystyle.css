@@ -1669,3 +1669,32 @@ p {
 }
 
 
+
+.input-wrapper{
+    position: relative;
+    width: 100%;
+
+}
+
+.input-wrapper input{
+}
+
+.input-wrapper .toggle-icon{
+    right: 10px;
+    top: 10px;
+    position: absolute;
+
+
+}
+
+
+.profile-wrapper{
+    position: relative;
+
+}
+.profile-wrapper button{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+
+}

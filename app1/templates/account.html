@@ -9,36 +9,70 @@
 
 <div class="account-container">
     <header>
-        <h1>User Account Details</h1>
+        <h1>Account Details</h1>
     </header>
-
+<div class="row">
+    <div class="col">
+        <div class="box200">
+</div>
     <section class="user-details">
         <h2>Profile Information</h2>
         <div class="profile-photo">
-            <img id="profilePic" src="default-profile.png" alt="Profile Picture">
-            <input id="file" type="file" style="display: none;" accept="image/*" onchange="changeProfilePic(event)" name="acc_img" alt="Arrow">
-            <button id="browse">browse</button>
+            <div class="profile-wrapper">
+            {% if register.regi_img %}
+            <img id="profilePic" src="/media/{{register.regi_img}}" alt="Profile Picture">
+            {% else %}
+            <img id="profilePic" src="{% static 'default-profile.png' %}" alt="Profile Picture">
+            {% endif %}
+            <button id="browse" ><i class="bi bi-person"></i></button>
+            <form action="/account" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+            <input id="file" type="file" style="display: none;" accept="image/*" onchange="this.form.submit();" name="acc_img" alt="Arrow">
+            </form>
+            </div>
+            <br>
+            
+        <button onclick="logout()"><a href="\logout" style="text-decoration: none; color : white;">Logout</a></button>
+            
         </div>
         <!-- <button onclick="editProfile()">Edit Profile</button> -->
     </div>
-
-    <form id="edit-profile-form" style="display: none;" class="registration-formm">
-        {% csrf_token %}
+    <div class="col">
+        <div class="box201">
+            {% if register %}
+ <form id="edit-profile-form" style="display: none;" class="registration-formm">
+      
         <h2>Edit Profile</h2>
         <label for="name">Name  </label>
-        <input type="text" id="name" placeholder="Name" name="acc_name">
+        <input type="text" id="name" class="form-control" placeholder="Name" value="{{register.regi_name}}" name="acc_name">
 
         <label for="email">Email:</label>
-        <input type="email" id="age" placeholder="Email" name="acc_email">
+        <input type="email" id="age" class="form-control" placeholder="Email" value="{{register.regi_email}}" name="acc_email">
 
 
         <label for="password">Password:</label>
-        <input type="password" id="location" name="acc_psw">
+
+       <div class="input-wrapper">
+         <input type="password" id="location" class="form-control" value="{{register.regi_psw}}" name="acc_psw">
+         <input type="checkbox" onclick="myFunction()" class="toggle-icon">
+       </div>
+       <br>
+        
+     
 
        
 
         <button type="submit">Save Changes</button>
     </form>
+    {% endif %}
+        </div>
+    </div>
+        </div>
+
+    </div>
+
+
+   
 
 
        
@@ -48,7 +82,6 @@
         <!-- <h2>Actions</h2> -->
         <button onclick="editProfile()">Edit Profile</button>
         <!-- <button onclick="changePassword()">Change Password</button> -->
-        <button onclick="logout()"><a href="\logout" style="text-decoration: none; color : white;">Logout</a></button>
         
 
     </section>
@@ -76,7 +109,14 @@ $(document).ready(function(){
     });
 });
 
-
+function myFunction() {
+  var x = document.getElementById("location");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
     
 </script>
 
@@ -168,12 +208,6 @@ button:hover {
     margin: 10px 0 5px;
 }
 
-.registration-formm input,
-.registration-formm textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-}
 
 button {
     background-color: #4CAF50;

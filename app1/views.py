@@ -4,7 +4,7 @@ from django.template import loader
 from . models import Registration
 from . models import Contact
 from . models import Cart
-from . models import Addtoproduct,Order,Booktable,Account
+from . models import Addtoproduct,Order,Booktable
 
 
 # Create your views here.
@@ -404,8 +404,14 @@ def myorders(request):
 def account(request):
     if'usersession' not in request.session:
         return HttpResponseRedirect('/login')
+    
+    if request.method == 'POST' and request.FILES.get('acc_img'):
+        profile = Registration.objects.filter(regi_name = request.session['usersession']).first()
+        profile.regi_img = request.FILES['acc_img']
+        profile.save()
+        return HttpResponseRedirect('/account')
 
-    register=Registration.objects.filter(regi_name=request.session['usersession'])
+    register=Registration.objects.filter(regi_name=request.session['usersession']).first()
     
     context = {
         'register':register

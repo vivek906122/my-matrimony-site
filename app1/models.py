@@ -6,6 +6,7 @@ class Registration(models.Model):
     regi_name  = models.TextField(max_length=250)
     regi_email = models.EmailField(max_length=250)
     regi_psw = models.TextField(max_length=250)
+    regi_img = models.FileField(upload_to='profile_images',null=True)
 
     def __str__(self) -> str:
         return self.regi_name
@@ -78,15 +79,7 @@ class Booktable(models.Model):
     def __str__(self) -> str:
         return self.date
 
-class Account(models.Model):
-    acc_img = models.FileField()
-    user = models.CharField(max_length=255,null=True)
-    acc_name = models.TextField(max_length=255)
-    acc_email = models.EmailField(max_length=250)
-    acc_psw = models.TextField(max_length=250)
 
-    def __str__(self) -> str:
-        return self.user
 
 
 
