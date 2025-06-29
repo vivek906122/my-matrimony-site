@@ -10,16 +10,9 @@
     --white-color: #fff;
     --light-gray-color: #f2f2f2;
 }
-html{
-    scroll-behavior: smooth;
-}
+
+
 /* -- */
-nav {
-    position: sticky;
-    top: 0; /* Stick to the top of the viewport */
-    text-align: center;
-    z-index: 5000; /* Ensure it stays above other content */
-}
 
 
 
@@ -428,6 +421,7 @@ text-transform: uppercase;
     padding: 0px 20px 0px 20px;
     background-color: #252525;
     padding-bottom: 50px;
+    scroll-padding-top: 100px !important;
 
 }
 .box5{
@@ -906,8 +900,9 @@ font-size:26px ;
 }
 
 .cart-totals{
+    background-image:url("../cup-coffieee-removebg-preview.png");
     padding:15px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     margin-bottom: 30px;
     font-size: 18px;
     text-align: center;
@@ -915,7 +910,7 @@ font-size:26px ;
     max-width: 450px;
     margin: auto;
     border: 10px;
-    border: 2px solid#afb9c083;
+    /* border: 2px solid#afb9c083; */
     min-height: 450px;
     background-color: whitesmoke;
     /* border-radius: 20px; */
@@ -1681,7 +1676,7 @@ p {
 
 .input-wrapper .toggle-icon{
     right: 10px;
-    top: 10px;
+    top: 12px;
     position: absolute;
 
 
@@ -1696,5 +1691,40 @@ p {
     position: absolute;
     left: 0px;
     bottom: 0px;
+    background-color: transparent;
+    color: red;
+    font-size: 25px;
+    padding: 0px;
+    
 
+}
+#trash-button{
+    background-color: transparent;
+    color: red;
+    left:80px;
+    position: absolute;
+    bottom: 5px;
+}
+.brow{
+    left:60px;
+    position: absolute;
+    bottom: 5px;
+}
+
+/* cart_count */
+.cart_link{
+    position: relative;
+}
+.cart_count{
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    top:-5px;
+    padding: 0px;
+    font-style: italic;
+
+}
+html{
+    scroll-behavior: smooth !important;
+     scroll-padding-top: 90px !important;
 }

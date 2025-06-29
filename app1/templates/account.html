@@ -21,10 +21,15 @@
             <div class="profile-wrapper">
             {% if register.regi_img %}
             <img id="profilePic" src="/media/{{register.regi_img}}" alt="Profile Picture">
+            <a href="/account?del={{register.id}}">
+            <button id="trash-button" ><i class="bi bi-trash"></i></button>
+
+            </a>
+            
             {% else %}
             <img id="profilePic" src="{% static 'default-profile.png' %}" alt="Profile Picture">
+            <button id="browse" ><i class="bi bi-person brow"></i></button>
             {% endif %}
-            <button id="browse" ><i class="bi bi-person"></i></button>
             <form action="/account" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
             <input id="file" type="file" style="display: none;" accept="image/*" onchange="this.form.submit();" name="acc_img" alt="Arrow">
@@ -40,11 +45,13 @@
     <div class="col">
         <div class="box201">
             {% if register %}
- <form id="edit-profile-form" style="display: none;" class="registration-formm">
-      
+ <!-- <form id="edit-profile-form" style="display: none;" class="registration-formm"> -->
+      <form action="/account " method="POST" >
+        {% csrf_token %}
+
         <h2>Edit Profile</h2>
         <label for="name">Name  </label>
-        <input type="text" id="name" class="form-control" placeholder="Name" value="{{register.regi_name}}" name="acc_name">
+        <input type="text" id="name" class="form-control" placeholder="Name" value="{{register.regi_name}}" name="acc_name" readonly>
 
         <label for="email">Email:</label>
         <input type="email" id="age" class="form-control" placeholder="Email" value="{{register.regi_email}}" name="acc_email">
@@ -80,12 +87,83 @@
 
     <section class="actions">
         <!-- <h2>Actions</h2> -->
-        <button onclick="editProfile()">Edit Profile</button>
+        <!-- <button onclick="editProfile()">Edit Profile</button> -->
         <!-- <button onclick="changePassword()">Change Password</button> -->
         
 
     </section>
 </div>
+
+
+
+<!-- --footer -->
+
+
+
+<section class="sec7">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-3 col-sm-12">
+                <div class="box18">
+                    <a href="/">
+                    <img src="{% static 'coffee_logo.png' %}" alt="">
+                    <h2>Cafe Spot</h2>
+                </a>
+                </div>
+            </div>
+
+
+            <div class="col-xl-3 col-sm-12">
+                <div class="box19">
+            <h2>Useful Links</h2>
+              <a href="#about">About</a>
+              <br>
+              <a href="#service">Service</a>
+              <br>
+              <a href="#gallery">Gallery</a>
+              <br>
+              <a href="#contact">Contact</a>
+                </div>
+            </div>
+
+            <div class=" col-xl-3 col-sm-12">
+                <div class="box20">
+                    <h2>Contact</h2>
+                    <br>
+                    <i class="bx bx-current-location bz"></i>
+                    <h3>Kerala,Palakkad</h3>
+                    <i class="bx bxs-phone-call bz"></i>
+                    <h3>+91 12345678</h3>
+                    <i class="bx bxs-time-five bz"></i>
+                    <h3>Mon-Sun : 10:00 AM - 7:00 PM</h3>
+                    
+
+                    
+                </div>
+               
+                  
+
+                 
+            </div>
+
+            <div class="col-xl-3 col-sm-12">
+                <div class="box21">
+               <h2>Follow</h2>
+               <br>
+               <a href="https://www.facebook.com/">
+               <i class="bi bi-facebook bv"></i>
+            </a>
+               <a href="https://x.com/login?mx=2">
+                <i class="bx bxl-twitter bv"></i>
+               </a>
+               <a href="https://www.instagram.com/accounts/login/?hl=en"> <i class="bx bxl-instagram-alt bv"></i>
+            </a>
+              
+                </div>
+            </div>
+        </div>
+    </div>
+ </section>
 
 <script>
     function changeProfilePic(event) {
@@ -131,6 +209,7 @@ function myFunction() {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: 800px;
 }
 
 header {

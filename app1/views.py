@@ -110,6 +110,11 @@ def login(request):
         log = Registration.objects.filter(regi_name = lname , regi_psw = lpsw)
         if log:
             request.session['usersession'] = lname
+            cart = Cart.objects.filter(cart_user = request.session['usersession'])
+            cart_count = 0
+            for x in cart:
+                cart_count += x.cart_qty
+                request.session['cart_count'] = cart_count
             return HttpResponseRedirect("/account")
         
     
@@ -138,6 +143,11 @@ def addtocart(request,id):
                     cart_qty=1,
                     cart_amount = pro.pro_price )
         cart.save()
+    cart = Cart.objects.filter(cart_user = request.session['usersession'])
+    cart_count = 0
+    for x in cart:
+        cart_count += x.cart_qty
+        request.session['cart_count'] = cart_count
     return HttpResponseRedirect("/cart")
 
 
@@ -172,6 +182,11 @@ def cart(request):
         id = request.GET['del']
         delcart = Cart.objects.filter(id=id)[0]
         delcart.delete()
+        cart = Cart.objects.filter(cart_user = request.session['usersession'])
+        cart_count = 0
+        for x in cart:
+            cart_count += x.cart_qty
+            request.session['cart_count'] = cart_count
         
         #change cart quantity
 
@@ -187,7 +202,11 @@ def cart(request):
                     cart2.cart_qty-=1
             cart2.cart_amount = cart2.cart_qty * cart2.cart_price
             cart2.save()
-
+            cart = Cart.objects.filter(cart_user = request.session['usersession'])
+            cart_count = 0
+            for x in cart:
+                cart_count += x.cart_qty
+                request.session['cart_count'] = cart_count
 
 
 
@@ -404,12 +423,27 @@ def myorders(request):
 def account(request):
     if'usersession' not in request.session:
         return HttpResponseRedirect('/login')
-    
+    if 'del' in request.GET: 
+        reg_id=request.GET['del']
+        profile = Registration.objects.filter(id = reg_id).first()
+        profile.regi_img = None
+        profile.save()
+        return HttpResponseRedirect('/account')
+
     if request.method == 'POST' and request.FILES.get('acc_img'):
         profile = Registration.objects.filter(regi_name = request.session['usersession']).first()
         profile.regi_img = request.FILES['acc_img']
         profile.save()
         return HttpResponseRedirect('/account')
+    if 'acc_email' in request.POST:
+        email = request.POST['acc_email']
+        psw = request.POST['acc_psw']
+        profile = Registration.objects.filter(regi_name = request.session['usersession']).first()
+        profile.regi_email = email
+        profile.regi_psw = psw
+        profile.save()
+        return HttpResponseRedirect('/account')
+
 
     register=Registration.objects.filter(regi_name=request.session['usersession']).first()
     
