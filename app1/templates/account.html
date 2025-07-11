@@ -22,13 +22,13 @@
             {% if register.regi_img %}
             <img id="profilePic" src="/media/{{register.regi_img}}" alt="Profile Picture">
             <a href="/account?del={{register.id}}">
-            <button id="trash-button" ><i class="bi bi-trash"></i></button>
+            <button id="trash-button"  ><i class="bi bi-trash trash-buttons"></i></button>
 
             </a>
             
             {% else %}
             <img id="profilePic" src="{% static 'default-profile.png' %}" alt="Profile Picture">
-            <button id="browse" ><i class="bi bi-person brow"></i></button>
+            <span id="browse" ><i class="bi bi-person brow"></i></span>
             {% endif %}
             <form action="/account" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -37,7 +37,7 @@
             </div>
             <br>
             
-        <button onclick="logout()"><a href="\logout" style="text-decoration: none; color : white;">Logout</a></button>
+        <button onclick="logout()" class="log-button"><a href="\logout" style="text-decoration: none; color : white;">Logout</a></button>
             
         </div>
         <!-- <button onclick="editProfile()">Edit Profile</button> -->
@@ -69,7 +69,7 @@
 
        
 
-        <button type="submit">Save Changes</button>
+        <button class="log-buttons" type="submit" >Save Changes</button>
     </form>
     {% endif %}
         </div>
@@ -261,19 +261,18 @@ span {
     text-align: center;
 }
 
-button {
-    background-color: #007bff;
+.log-buttons{
+  background-color: #7E5E3c;
     color: white;
     border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
+    border-radius: 8px;
+    padding: 10px 35px;
     cursor: pointer;
-    margin: 5px;
     transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #0056b3;
+.log-buttons:hover {
+    background-color: #7E5E3c;
 }
 
 
@@ -288,17 +287,60 @@ button:hover {
 }
 
 
-button {
-    background-color: #4CAF50;
+.log-button{
+    /* background-color: #4CAF50; */
     color: white;
     border: none;
-    padding: 10px;
+    padding: 10px 50px;
     cursor: pointer;
+    background-color: #7E5E3c;
+    border-radius: 8px;
+}
+#trash-button{
+    border: none;
+}
+#trash-button{
+    background-color: transparent;
+    color: red;
+    left:80px;
+    position: absolute;
+    bottom: 5px;
+}
+#browse{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    background-color: transparent;
+    color: red;
+    font-size: 25px;
+    padding: 0px;
+    
+
+}
+.profile-wrapper{
+    position: relative;
+
 }
 
-button:hover {
-    background-color: #45a049;
+.brow{
+    left:60px;
+    position: absolute;
+    bottom: 5px;
 }
+.input-wrapper{
+    position: relative;
+    width: 100%;
+
+}
+
+.input-wrapper .toggle-icon{
+    right: 10px;
+    top: 12px;
+    position: absolute;
+
+
+}
+
 
 </style>
 {% endblock %}

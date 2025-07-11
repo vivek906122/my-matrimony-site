@@ -17,6 +17,7 @@
 <main>
     
     <section class="checkout-form">
+        <div class="container-fluid">
         <form action="/checkout" method="post">
             {% csrf_token %}
             <h6>Contact information</h6>
@@ -84,7 +85,11 @@
 
 
         <div class="row">
+        <div class="col-12">
         <h6>Select Payment Method</h6>
+
+        </div>
+                
 
             <div class=" col-sm-12 col-lg-6">
                 <div class="payment-option">
@@ -163,7 +168,7 @@
             </div>
             {%  endfor %}
         </div>
-        
+        </div>
     </section>
 
 </main>
